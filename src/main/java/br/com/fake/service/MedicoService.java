@@ -4,6 +4,9 @@
 package br.com.fake.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +32,20 @@ public class MedicoService {
 	}
 	
 	@Transactional
-	public void salva(Medico medico) {
-		this.repository.save(medico);
+	public Medico salva(Medico medico) {
+		return this.repository.save(medico);
 	}
-	
+
+	public Medico getMedidoById(Long id) {
+		return this.repository.getOne(id);
+	}
+
+	public void update(@Valid Medico medico) {
+		this.repository.flush();
+	}
+
+	public void delete(Long id) {
+		this.repository.deleteById(id);
+	}
+
 }

@@ -9,6 +9,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="alert alert-success" th:if="${not #strings.isEmpty(mensagem)}">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+			<span th:text="${mensagem}"></span>
+   		</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -22,6 +26,12 @@
 		        <td th:text="${m.nome}"></td>
 		        <td th:text="${m.email}"></td>
 		        <td th:text="${m.crm}"></td>
+		        
+		         <td>
+		        	<a th:href="@{edite/{id}(id=${m.id})}" type="button" class="btn btn-outline btn-primary">Editar</a>
+		        	
+					<a th:href="@{delete/{id}(id=${m.id})}" type="button" class="btn btn-outline btn-primary">Remover</a>
+		        </td>
 		      </tr>
 		</tbody>
 	</table>

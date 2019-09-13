@@ -28,21 +28,20 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="tb_medicos")
-@NoArgsConstructor
 @EqualsAndHashCode(of="id")
-public class Medico implements Serializable {
+public final class Medico implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "Nome é obrigatório")
+	@NotEmpty(message = "{nome.vazio}")
 	private String nome;
 	
 	@NotEmpty(message = "{email.vazio}")
 	@Email
 	private String email;
 	
-	@NotBlank(message = "CRM é obrigatório")
+	@NotEmpty(message = "{crm.vazio}")
 	private String crm;
 }
